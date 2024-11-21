@@ -1,0 +1,199 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: white;
+  background-color: #030615;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* This sets the page to take up 100% of the vertical height */
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  display: relative;
+}
+
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+/* This is for the background image, which we assigned a classname to in Main.jsx. 
+When selecting it need a period (.) before class because referencing it by className */
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  object-fit: cover;
+
+}
+
+/* The * selector selects everything on the page. Padding and margin of 0 stretches everything to the pages edges*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Doesn't need a period before it because not referencing it by className */
+
+footer {
+  position: fixed; /* Fixed position relative to parent (because display relative in root) */
+  bottom: 0; /* These 2 lines put it in the bottom left corner */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+footer h2 {
+  font-size: 1.4rem;
+}
+
+footer h1 {
+  font-size: 0.9rem;
+  font-weight: 200;
+}
+
+footer div {
+  display: flex;
+  flex-direction: column;
+}
+
+footer button {
+  background: transparent;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  transition-duration: 200ms;
+  cursor: pointer;
+}
+
+footer button i {
+  font-size: 1.3rem;
+}
+
+footer button:hover {
+  opacity: 0.7;
+}
+
+.bgGradient {
+  position: absolute;
+  inset: 0; /* Expand to full width of parent container (footer) */
+  z-index: -1; /* Puts it behind everything else */
+  background: linear-gradient(to top, #030615, rgba(255, 255, 255, 0));
+}
+
+.sidebar {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.bgOverlay{
+  position: absolute;
+  inset: 0;
+  background: #030615;
+  opacity: 0.6;
+}
+
+.sidebarContents{
+  z-index: 15;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  overflow-y: scroll;
+  height: 100%;
+  width: 80%;
+  max-width: 800px;
+  margin-left: auto; /* shoves it to the right side of the page */
+  background: #030615;
+}
+
+.sidebarContents h2 {
+  font-weight: 200;
+  font-size: 1.4rem;
+}
+
+.sidebarContents div {
+  flex: 1;
+}
+
+ /* This targets the button inside of sidebarContents */
+.sidebarContents button {
+  background: transparent;
+  color: white;
+  border: none;
+  outline: none;
+  margin-right: auto;
+  transition-duration: 200ms;
+  cursor: pointer;
+  padding: 1rem 0;
+}
+
+.sidebar button:hover {
+  opacity: 0.7;
+}
+
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.descriptionTitle {
+  font-size: 1.1rem;
+  font-weight: 200;
+}
+
+.loadingState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.loadingState i{
+  opacity: 0.2;
+  font-size: 3rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin{
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Makes this resposnive for big screen display. The styles are changed as outlined when the display is over 640px */
+/* Changed so if on small screen (phone) the sidebar takes up whole page but if on big screen sidebar only takes up the side */
+@media (min-width: 640px) {
+  .sidebar {
+    position: relative;
+    inset: unset;
+    min-width: 30%;
+    box-shadow: 0 0 40px 1px #030615;
+  }
+
+  .sidebarContents {
+    margin: unset;
+  }
+}
